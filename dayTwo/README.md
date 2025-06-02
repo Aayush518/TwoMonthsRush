@@ -1,87 +1,71 @@
-# Day Two Challenge - Deep Learning Recommender System
+# Deep Learning Based Recommender System
 
-## Description
-This project implements a state-of-the-art deep learning based recommender system using PyTorch. Unlike traditional recommender systems, this implementation uses LSTM (Long Short-Term Memory) networks to capture complex sequential patterns in user sessions.
+This project implements a deep learning based recommender system using PyTorch. The system uses neural embeddings and feed-forward networks to learn item relationships from user sessions.
 
 ## Features
-- Deep Learning based recommendation system using LSTM
-- Session sequence modeling
-- Embedding layer for item representation
-- Training and validation pipeline
-- Model checkpointing
-- Comprehensive logging
+
+- Neural embeddings to represent items in a dense vector space
+- Multi-layer feed-forward network for learning item relationships
+- Session-based data processing with padding and truncation
+- Comprehensive training pipeline with validation
+- Model evaluation and recommendation generation
 
 ## Project Structure
+
 ```
 dayTwo/
-├── src/                   # Source code
-│   ├── data/             # Data processing
-│   │   ├── __init__.py
-│   │   ├── dataset.py    # Custom dataset implementation
-│   │   └── processor.py  # Data loading and preprocessing
-│   ├── model/            # Model implementation
-│   │   ├── __init__.py
-│   │   └── recommender.py # Deep learning model
-│   ├── training/         # Training utilities
-│   │   ├── __init__.py
-│   │   └── trainer.py    # Model training and evaluation
-│   ├── utils/            # Utility functions
-│   │   ├── __init__.py
-│   │   └── logger.py     # Logging utilities
-│   ├── __init__.py
-│   └── main.py          # Main entry point
-├── data/                 # Data directory
-│   ├── generated_sessions.csv
-│   └── deep_recommender.pth
-├── tests/               # Test files
-├── requirements.txt     # Project dependencies
-└── README.md           # This file
+├── data/
+│   └── sample_sessions.csv    # Sample session data
+├── src/
+│   ├── models/
+│   │   └── recommender.py     # DeepRecommender model implementation
+│   ├── data/
+│   │   └── processor.py       # Data processing and dataset creation
+│   ├── training/
+│   │   └── trainer.py         # Model training and evaluation
+│   └── utils/
+│       └── logger.py          # Logging utilities
+├── tests/                     # Comprehensive test suite
+├── main.py                    # Main entry point
+└── requirements.txt           # Project dependencies
 ```
-
-## Technical Details
-- Uses PyTorch for deep learning implementation
-- LSTM architecture for sequence modeling
-- Embedding layer for item representation
-- Cross-entropy loss for training
-- Adam optimizer
-- GPU support (if available)
-
-## Setup
-1. Make sure you have Python 3.x installed
-2. Install the required dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-## Running the Solution
-To run the solution, execute:
-```bash
-python src/main.py
-```
-
-This will:
-1. Load and preprocess the session data
-2. Create train and validation datasets
-3. Initialize and train the deep learning model
-4. Save the trained model
 
 ## Model Architecture
-The model consists of:
-1. Embedding Layer: Converts item IDs to dense vectors
-2. LSTM Layer: Processes sequential session data
-3. Fully Connected Layer: Predicts next items
 
-## Performance
-The model is evaluated using:
-- Training loss
-- Validation loss
-- Per-epoch metrics
+The recommender system uses a deep neural network with the following components:
 
-## Requirements
-- Python 3.x
-- PyTorch
-- pandas
-- numpy
-- scikit-learn
-- matplotlib
-- tqdm 
+- **Embedding Layer**: Maps item IDs to dense vectors (64 dimensions)
+- **Neural Network**:
+  - Input: Item embeddings
+  - Hidden layers: Two fully connected layers (128 dimensions)
+  - Output: Probability distribution over items
+  - Dropout for regularization
+
+## Usage
+
+1. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+2. Run the recommender system:
+```bash
+python main.py
+```
+
+## Testing
+
+Run the test suite:
+```bash
+pytest tests/ -v
+```
+
+## Dependencies
+
+- PyTorch >= 2.0.0
+- pandas >= 1.5.0
+- numpy >= 1.21.0
+- scikit-learn >= 1.0.0
+- pytest >= 7.0.0
+- pytest-cov >= 4.0.0
+- pytest-catchlog >= 1.2.2 
