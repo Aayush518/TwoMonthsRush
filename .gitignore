@@ -24,6 +24,7 @@ wheels/
 venv/
 env/
 ENV/
+dayTwo/venv
 .env
 .venv
 env.bak/
