@@ -54,8 +54,8 @@ class DataProcessor:
         # Load the data
         df = pd.read_csv(self.data_dir / 'sample_sessions.csv')
         
-        # Convert timestamps
-        df['timestamp'] = pd.to_datetime(df['timestamp'])
+        # Convert timestamps using ISO8601 format
+        df['timestamp'] = pd.to_datetime(df['timestamp'], format='ISO8601')
         
         # Sort by session_id and timestamp
         df = df.sort_values(['session_id', 'timestamp'])
